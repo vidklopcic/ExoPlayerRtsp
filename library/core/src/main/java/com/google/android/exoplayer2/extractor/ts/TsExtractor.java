@@ -200,9 +200,9 @@ public final class TsExtractor implements Extractor {
 
   @Override
   public void seek(long position, long timeUs) {
-    int timestampAdjustersCount = timestampAdjusters.size();
-    for (int i = 0; i < timestampAdjustersCount; i++) {
-      timestampAdjusters.get(i).reset();
+    for (TimestampAdjuster timestampAdjuster : timestampAdjusters) {
+      timestampAdjuster.reset();
+      timestampAdjuster.setFirstSampleTimestampUs(timeUs);
     }
     tsPacketBuffer.reset();
     continuityCounters.clear();
