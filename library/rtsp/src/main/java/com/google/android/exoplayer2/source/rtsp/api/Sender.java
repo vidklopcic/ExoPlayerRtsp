@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 
 
 /* package */ final class Sender {
@@ -72,7 +73,11 @@ import java.util.concurrent.Executors;
                         byte[] bytes = message.toString().getBytes();
                         outputStream.write(bytes, 0, bytes.length);
 
-                        eventListener.onSendSuccess(message);
+                        try {
+                            eventListener.onSendSuccess(message);
+                        } catch (RejectedExecutionException e) {
+                            Log.e("exoplayer2", "rejected execution RTSP!");
+                        }
                     }
 
                 } catch (IOException ex) {
