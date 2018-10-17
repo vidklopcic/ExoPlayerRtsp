@@ -37,7 +37,7 @@ public abstract class RtpPayloadFormat {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({AAC, AC3, AMR, G722, EAC3, GSM, H261, H263, H264, H265, L16, MP2T,
-            MP4ALATM, MPEG4GENERIC, MP4VES, MPA, MPV, PCMA, PCMU, PCMA_WB, PCMU_WB, OPUS, VP8, VP9})
+            MP4ALATM, MPEG4GENERIC, MP4VES, MPA, MPV, PCMA, PCMU, PCMA_WB, PCMU_WB, OPUS, VP8, VP9, MJPEG})
     public @interface MediaCodec {}
     public static final String AAC = "AAC";
     public static final String AC3 = "AC3";
@@ -63,6 +63,7 @@ public abstract class RtpPayloadFormat {
     public static final String OPUS = "OPUS";
     public static final String VP8 = "VP8";
     public static final String VP9 = "VP9";
+    public static final String MJPEG = "MJPEG";
 
     private final @MediaType int type;
     private final int payload;

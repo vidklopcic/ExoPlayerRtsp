@@ -23,6 +23,8 @@ import com.google.android.exoplayer2.source.rtp.format.RtpPayloadFormat;
 import com.google.android.exoplayer2.source.rtp.format.RtpVideoPayload;
 import com.google.android.exoplayer2.util.MimeTypes;
 
+import static com.google.android.exoplayer2.source.rtp.format.RtpPayloadFormat.MJPEG;
+
 /**
  * Default {@link RtpPayloadReader.Factory} implementation.
  */
@@ -30,6 +32,9 @@ import com.google.android.exoplayer2.util.MimeTypes;
 
   @NonNull @Override
   public RtpPayloadReader createPayloadReader(RtpPayloadFormat format) {
+    if (format.encoding().equals(MJPEG)) {
+        return new RtpMPEGPayloadReader();
+    }
     if (MimeTypes.VIDEO_H264.equals(format.sampleMimeType())) {
       return new RtpH264PayloadReader((RtpVideoPayload)format);
     } else if (MimeTypes.AUDIO_ALAW.equals(format.sampleMimeType()) ||

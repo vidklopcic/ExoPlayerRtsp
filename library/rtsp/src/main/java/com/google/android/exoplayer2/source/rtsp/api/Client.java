@@ -460,6 +460,9 @@ public abstract class Client {
                                 }
 
                                 if (payloadBuilder != null) {
+                                    if (body.getContent().contains("MJPG")) {
+                                        payloadBuilder.encoding("MJPEG");
+                                    }
                                     formatBuilder.format(payloadBuilder.build());
                                 }
 
