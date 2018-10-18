@@ -15,6 +15,7 @@
  */
 package com.google.android.exoplayer2.source.rtp.extractor;
 
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.android.exoplayer2.C;
